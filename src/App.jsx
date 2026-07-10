@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // Layout
 import DashboardLayout from "./components/layout/DashboardLayout";
@@ -21,8 +21,7 @@ import Profile from "./pages/Profile";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
 
         {/* ---------- Public Routes ---------- */}
 
@@ -100,7 +99,6 @@ function App() {
         />
 
       </Routes>
-    </BrowserRouter>
   );
 }
 
