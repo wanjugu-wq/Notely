@@ -1,5 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { House, Notebook, FolderSimple, UserCircle, SignOut } from "@phosphor-icons/react";
+import {
+  House,
+  Notebook,
+  FolderSimple,
+  UserCircle,
+  SignOut,
+} from "@phosphor-icons/react";
 import { useAuth } from "../../context/AuthContext";
 
 const links = [
@@ -19,8 +25,10 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="min-h-screen w-72 border-r border-zinc-800 bg-[#050505] px-5 py-8">
-      <h1 className="mb-12 text-3xl font-black uppercase tracking-[0.25em] text-white">NoteNest</h1>
+    <aside className="min-h-screen w-72 border-r border-[var(--border)] bg-[var(--surface)] px-5 py-8">
+      <h1 className="mb-12 text-3xl font-semibold tracking-[0.2em] text-[var(--text)]">
+        NoteNest
+      </h1>
 
       <nav className="space-y-3">
         {links.map((link) => {
@@ -33,8 +41,8 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 `flex items-center gap-4 rounded-2xl px-4 py-3 transition ${
                   isActive
-                    ? "bg-white text-black"
-                    : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
+                    ? "bg-[var(--accent)] text-[var(--surface)]"
+                    : "text-[var(--muted)] hover:bg-[var(--panel)] hover:text-[var(--text)]"
                 }`
               }
             >
@@ -47,7 +55,7 @@ const Sidebar = () => {
 
       <button
         onClick={handleLogout}
-        className="mt-16 flex items-center gap-4 rounded-2xl px-4 py-3 text-zinc-400 transition hover:bg-zinc-900 hover:text-white"
+        className="mt-16 flex items-center gap-4 rounded-2xl px-4 py-3 text-[var(--muted)] transition hover:bg-[var(--panel)] hover:text-[var(--text)]"
       >
         <SignOut size={20} />
         Logout

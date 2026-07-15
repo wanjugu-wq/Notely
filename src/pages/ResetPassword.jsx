@@ -13,12 +13,18 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#050505] px-4 py-10">
-      <div className="w-full max-w-md rounded-4xl border border-zinc-800 bg-zinc-950 p-8 shadow-2xl shadow-black/40">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-10">
+      <div className="w-full max-w-md rounded-4xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-2xl shadow-black/10">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-zinc-500">Almost there</p>
-          <h1 className="mt-3 text-3xl font-bold text-white">Choose a new password</h1>
-          <p className="mt-2 text-sm text-zinc-400">Pick a fresh password to secure your account.</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--muted)]">
+            Almost there
+          </p>
+          <h1 className="mt-3 text-3xl font-semibold text-[var(--text)]">
+            Choose a new password
+          </h1>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            Pick a fresh password to secure your account.
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
@@ -43,8 +49,11 @@ const ResetPassword = () => {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-zinc-400">
-          <Link to="/login" className="font-semibold text-white hover:text-zinc-300">
+        <p className="mt-6 text-center text-sm text-[var(--muted)]">
+          <Link
+            to="/login"
+            className="font-semibold text-[var(--text)] hover:text-[var(--muted)]"
+          >
             Return to login
           </Link>
         </p>

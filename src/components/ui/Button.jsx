@@ -6,9 +6,12 @@ const Button = ({
   className = "",
 }) => {
   const variants = {
-    primary: "bg-white text-black hover:bg-zinc-200",
-    secondary: "bg-zinc-900 border border-zinc-800 text-zinc-100 hover:bg-zinc-800",
-    danger: "bg-zinc-100 text-black hover:bg-white",
+    primary:
+      "bg-[var(--accent)] text-[var(--background)] hover:bg-[var(--accent-soft)]",
+    secondary:
+      "bg-[var(--panel)] border border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]",
+    danger:
+      "bg-[var(--accent-soft)] text-[var(--text)] hover:bg-[var(--panel)]",
   };
 
   return (

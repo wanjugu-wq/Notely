@@ -4,22 +4,29 @@ import LabelChip from "../labels/LabelChip";
 
 export default function NoteEditor({ note }) {
   return (
-    <div className="rounded-4xl border border-zinc-800 bg-zinc-950 p-8 shadow-lg shadow-black/20">
+    <div className="rounded-4xl border border-[var(--border)] bg-[var(--panel)] p-8 shadow-lg shadow-black/10">
       <Input placeholder="Note Title" defaultValue={note?.title} />
 
       <textarea
         rows="10"
         defaultValue={note?.content}
-        className="mt-6 w-full resize-none rounded-2xl border border-zinc-800 bg-zinc-900 p-4 text-white outline-none transition focus:border-white"
+        className="mt-6 w-full resize-none rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-4 text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)]"
         placeholder="Write your note..."
       />
 
       <div className="mt-6">
-        <h4 className="mb-2 text-sm font-semibold text-zinc-300">Labels</h4>
+        <h4 className="mb-2 text-sm font-semibold text-[var(--muted)]">
+          Labels
+        </h4>
 
         <div className="flex flex-wrap gap-2">
           {note?.labels?.map((label) => (
-            <LabelChip key={label.id} label={label.name} color={label.color} removable />
+            <LabelChip
+              key={label.id}
+              label={label.name}
+              color={label.color}
+              removable
+            />
           ))}
         </div>
       </div>
