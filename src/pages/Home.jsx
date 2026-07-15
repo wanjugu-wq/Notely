@@ -31,7 +31,7 @@ const featureCards = [
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+    <div className="min-h-screen bg-(--background)] text-(--text)]">
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
         <div className="text-2xl font-semibold uppercase tracking-[0.3em] text-[var(--text)]">
           NoteNest
@@ -40,7 +40,7 @@ const Home = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/login"
-            className="text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+            className="text-sm font-medium text-(--muted)] transition hover:text-(--text)]"
           >
             Sign in
           </Link>
@@ -54,8 +54,8 @@ const Home = () => {
       <main className="mx-auto max-w-7xl px-6 py-10 lg:px-8 lg:py-20">
         <section className="grid items-center gap-10 rounded-4xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-2xl shadow-black/10 lg:grid-cols-[1.1fr_0.9fr] lg:p-12">
           <div>
-            <span className="inline-flex rounded-full border border-[var(--border)] bg-[var(--panel)] px-3 py-1 text-sm font-medium uppercase tracking-[0.25em] text-[var(--muted)]">
-              Your notes, beautifully organized
+            <span className="inline-flex rounded-full border border-[var(--border)] bg-(--panel)] px-3 py-1 text-sm font-medium tracking-[0.2em] text-[var(--muted)]">
+              Your notes beautifully organized
             </span>
 
             <h1 className="hero-title mt-6 text-4xl font-semibold tracking-tight text-[var(--text)] sm:text-5xl">
@@ -76,7 +76,7 @@ const Home = () => {
               </Link>
 
               <Link
-                to="/dashboard"
+                to="/login"
                 className="inline-flex items-center rounded-full border border-[var(--border)] px-5 py-2.5 font-semibold text-[var(--muted)] transition hover:bg-[var(--panel)] hover:text-[var(--text)]"
               >
                 View dashboard
@@ -87,7 +87,7 @@ const Home = () => {
           <div className="rounded-4xl border border-[var(--border)] bg-[var(--panel)] p-8 shadow-lg">
             <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 backdrop-blur">
               <p className="text-sm font-medium uppercase tracking-[0.25em] text-[var(--muted)]">
-                Snapshot
+                Progress
               </p>
               <div className="mt-4 space-y-4">
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-4">
@@ -118,8 +118,8 @@ const Home = () => {
                 key={feature.title}
                 className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-lg shadow-black/10"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--accent)] text-[var(--background)]">
-                  <Icon size={24} />
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--accent)] text-[var(--background)]">
+                  <Icon size={20} />
                 </div>
                 <h2 className="mt-4 text-lg font-semibold text-[var(--text)]">
                   {feature.title}
