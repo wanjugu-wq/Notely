@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../services/api";
+import toast from "react-hot-toast";
 
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
@@ -9,13 +11,32 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    register(name, email, password);
-    navigate("/dashboard");
+
+    if (!name || !email || !password) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      const newUser = {
+        name,
+        email,
+        password,
+      };
+
+      await registerUser(newUser);
+
+      toast.success("Account created successfully!");
+
+      setTimeout(navigate("/login"), 2500);
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message || "Unable to register.");
+    }
   };
 
   return (
@@ -36,14 +57,14 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
           <Input
             label="Full name"
-            placeholder="Alex Morgan"
+            placeholder="John Doe"
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
           <Input
             label="Email"
             type="email"
-            placeholder="you@example.com"
+            placeholder="johndoe123@example.com"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />

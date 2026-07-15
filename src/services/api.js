@@ -1,23 +1,27 @@
-const BASE_URL = "http://127.0.0.1:5555";
+const BASE_URL = "http://localhost:3001";
 
-// Generic request helper
-export async function api(endpoint, options = {}) {
-  const token = localStorage.getItem("token");
+export async function registerUser(user) {
+  const usersResponse = await fetch(`${BASE_URL}/users`);
+  const users = await usersResponse.json();
 
-  const config = {
+  const exists = users.find(
+    (u) => u.email.toLowerCase() === user.email.toLowerCase(),
+  );
+
+  if (exists) {
+    throw new Error("An account with this email already exists.");
+  }
+
+  const response = await fetch(`${BASE_URL}/users`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...(token && {
-        Authorization: `Bearer ${token}`,
-      }),
     },
-    ...options,
-  };
-
-  const response = await fetch(`${BASE_URL}${endpoint}`, config);
+    body: JSON.stringify(user),
+  });
 
   if (!response.ok) {
-    throw new Error("Something went wrong.");
+    throw new Error("Registration failed.");
   }
 
   return response.json();

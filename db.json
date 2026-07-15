@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "123456"
+    },
+    {
+      "name": "Michelle Wanjugu",
+      "email": "wanjuguzzz@gmail.com",
+      "password": "abc123",
+      "id": "l4wUec7s6Wg"
+    },
+    {
+      "name": "Alex Morgan",
+      "email": "michelle.wanjugu@student.moringaschool.com",
+      "password": "abc123",
+      "id": "-FgNKwl3Au4"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
