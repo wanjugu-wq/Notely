@@ -1,20 +1,41 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
-import { useAuth } from "../context/AuthContext";
+import { loginUser } from "../services/api";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    login(email, password);
-    navigate("/dashboard");
+
+    if (!email || !password) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      const user = await loginUser(email, password);
+
+      // Temporary authentication
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      localStorage.setItem("isAuthenticated", "true");
+
+      toast.success(`Welcome back, ${user.name}!`);
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1200);
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -24,9 +45,11 @@ const Login = () => {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--muted)]">
             Welcome back
           </p>
+
           <h1 className="mt-3 text-3xl font-semibold text-[var(--text)]">
             Sign in to NoteNest
           </h1>
+
           <p className="mt-2 text-sm text-[var(--muted)]">
             Continue where you left off and manage your notes.
           </p>
@@ -40,6 +63,7 @@ const Login = () => {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
+
           <Input
             label="Password"
             type="password"
@@ -52,7 +76,7 @@ const Login = () => {
             <label className="flex items-center gap-2 text-[var(--muted)]">
               <input
                 type="checkbox"
-                className="rounded border-[var(--border)] bg-[var(--panel)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                className="rounded border-[var(--border)]"
               />
               Remember me
             </label>
