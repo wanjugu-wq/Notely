@@ -1,65 +1,44 @@
-import {
-  PushPin,
-  PencilSimple,
-  Trash,
-  DotsThree,
-} from "@phosphor-icons/react";
+import { PushPin, PencilSimple, Trash, DotsThree } from "@phosphor-icons/react";
 
 import LabelChip from "../labels/LabelChip";
 
 export default function NoteCard({ note }) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 border border-gray-200 p-5 h-55 flex flex-col justify-between">
+    <div className="flex h-55 flex-col justify-between rounded-3xl border border-zinc-800 bg-zinc-950 p-5 shadow-lg shadow-black/20 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
       <div>
         <div className="flex items-start justify-between">
-          <h3 className="text-lg font-semibold text-gray-900">
-            {note.title}
-          </h3>
+          <h3 className="text-lg font-semibold text-white">{note.title}</h3>
 
-          {note.pinned && (
-            <PushPin
-              size={18}
-              weight="fill"
-              className="text-yellow-500"
-            />
-          )}
+          {note.pinned && <PushPin size={18} weight="fill" className="text-white" />}
         </div>
 
-        <p className="text-sm text-gray-600 mt-3 line-clamp-3">
-          {note.content}
-        </p>
+        <p className="mt-3 text-sm leading-6 text-zinc-400 line-clamp-3">{note.content}</p>
       </div>
 
       <div>
-        <span className="inline-block text-xs font-medium bg-blue-100 text-blue-700 px-3 py-1 rounded-full mb-3">
+        <span className="mb-3 inline-block rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-zinc-300">
           {note.folder}
         </span>
 
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="mb-4 flex flex-wrap gap-2">
           {note.labels.map((label) => (
-            <LabelChip
-              key={label.id}
-              label={label.name}
-              color={label.color}
-            />
+            <LabelChip key={label.id} label={label.name} color={label.color} />
           ))}
         </div>
 
-        <div className="flex justify-between items-center">
-          <small className="text-gray-400 text-xs">
-            {note.createdAt}
-          </small>
+        <div className="flex items-center justify-between">
+          <small className="text-xs text-zinc-500">{note.createdAt}</small>
 
           <div className="flex gap-2">
-            <button className="text-gray-500 hover:text-blue-600">
+            <button className="text-zinc-400 hover:text-white">
               <PencilSimple size={18} />
             </button>
 
-            <button className="text-gray-500 hover:text-red-500">
+            <button className="text-zinc-400 hover:text-white">
               <Trash size={18} />
             </button>
 
-            <button className="text-gray-500 hover:text-gray-800">
+            <button className="text-zinc-400 hover:text-white">
               <DotsThree size={18} />
             </button>
           </div>

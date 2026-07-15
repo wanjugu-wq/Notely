@@ -1,53 +1,48 @@
 import { Bell, MagnifyingGlass, UserCircle } from "@phosphor-icons/react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
-  return (
-    <header className="sticky top-0 z-50 h-18 bg-white border-b border-gray-200 flex items-center justify-between px-8">
-      {/* Search */}
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
-      <div className="relative w-105">
-        <MagnifyingGlass
-          size={20}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-        />
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
+  return (
+    <header className="sticky top-0 z-50 flex h-20 items-center justify-between border-b border-zinc-800 bg-[#050505] px-8">
+      <div className="relative w-full max-w-md">
+        <MagnifyingGlass size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" />
 
         <input
           type="text"
           placeholder="Search notes..."
-          className="
-            w-full
-            rounded-xl
-            border
-            border-gray-200
-            bg-gray-50
-            py-3
-            pl-11
-            pr-4
-            text-sm
-            outline-none
-            focus:border-blue-500
-            focus:ring-2
-            focus:ring-blue-100
-          "
+          className="w-full rounded-full border border-zinc-800 bg-zinc-900 py-3 pl-11 pr-4 text-sm text-zinc-100 outline-none transition focus:border-zinc-500"
         />
       </div>
 
-      {/* Right */}
-
-      <div className="flex items-center gap-6">
-        <button className="text-gray-500 hover:text-blue-600 transition">
-          <Bell size={24} />
+      <div className="flex items-center gap-5">
+        <button className="rounded-full border border-zinc-800 p-2 text-zinc-400 transition hover:text-white">
+          <Bell size={20} />
         </button>
 
-        <div className="flex items-center gap-3">
-          <UserCircle size={38} weight="fill" className="text-blue-600" />
+        <div className="flex items-center gap-3 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-2">
+          <UserCircle size={34} weight="fill" className="text-white" />
 
           <div>
-            <p className="font-semibold text-sm">Michelle</p>
-
-            <p className="text-xs text-gray-500">michelle@email.com</p>
+            <p className="text-sm font-semibold text-white">{user?.username || "Guest"}</p>
+            <p className="text-xs text-zinc-500">{user?.email || "No email"}</p>
           </div>
         </div>
+
+        <button
+          onClick={handleLogout}
+          className="rounded-full border border-zinc-800 px-3 py-2 text-sm text-zinc-400 transition hover:border-white hover:text-white"
+        >
+          Logout
+        </button>
       </div>
     </header>
   );

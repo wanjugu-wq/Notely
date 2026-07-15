@@ -13,12 +13,12 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-10">
-      <div className="w-full max-w-md rounded-[2rem] border border-gray-200 bg-white p-8 shadow-sm">
+    <div className="flex min-h-screen items-center justify-center bg-[#050505] px-4 py-10">
+      <div className="w-full max-w-md rounded-4xl border border-zinc-800 bg-zinc-950 p-8 shadow-2xl shadow-black/40">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Almost there</p>
-          <h1 className="mt-3 text-3xl font-bold text-gray-900">Choose a new password</h1>
-          <p className="mt-2 text-sm text-gray-600">Pick a fresh password to secure your account.</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-zinc-500">Almost there</p>
+          <h1 className="mt-3 text-3xl font-bold text-white">Choose a new password</h1>
+          <p className="mt-2 text-sm text-zinc-400">Pick a fresh password to secure your account.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
@@ -43,8 +43,8 @@ const ResetPassword = () => {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-600">
-          <Link to="/login" className="font-semibold text-blue-600 hover:text-blue-700">
+        <p className="mt-6 text-center text-sm text-zinc-400">
+          <Link to="/login" className="font-semibold text-white hover:text-zinc-300">
             Return to login
           </Link>
         </p>

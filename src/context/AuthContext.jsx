@@ -6,7 +6,6 @@ function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Check if a user is already "logged in"
   useEffect(function () {
     const storedUser = localStorage.getItem("user");
 
@@ -17,22 +16,19 @@ function AuthProvider({ children }) {
     setLoading(false);
   }, []);
 
-  // Mock Login
   function login(email, password) {
-    // Replace with API call later
     const mockUser = {
       id: 1,
-      username: "Caleb",
+      username: email.split("@")[0] || "Guest",
       email,
     };
 
     localStorage.setItem("user", JSON.stringify(mockUser));
     setUser(mockUser);
+    return mockUser;
   }
 
-  // Mock Register
   function register(username, email, password) {
-    // Replace with API call later
     const mockUser = {
       id: 1,
       username,
@@ -41,9 +37,9 @@ function AuthProvider({ children }) {
 
     localStorage.setItem("user", JSON.stringify(mockUser));
     setUser(mockUser);
+    return mockUser;
   }
 
-  // Logout
   function logout() {
     localStorage.removeItem("user");
     setUser(null);
