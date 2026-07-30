@@ -23,7 +23,7 @@ const Login = () => {
     try {
       const user = await loginUser(email, password);
 
-      // Temporary authentication
+      //Temporary authentication
       localStorage.setItem("currentUser", JSON.stringify(user));
       localStorage.setItem("isAuthenticated", "true");
 
@@ -31,7 +31,7 @@ const Login = () => {
 
       setTimeout(() => {
         navigate("/dashboard");
-      }, 1200);
+      }, 1300);
     } catch (error) {
       console.error(error);
       toast.error(error.message);

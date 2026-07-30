@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:3000";
 
 export async function registerUser(user) {
   const usersResponse = await fetch(`${BASE_URL}/users`);
