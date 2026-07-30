@@ -6,28 +6,19 @@ const Button = ({
   className = "",
 }) => {
   const variants = {
-    primary: "bg-blue-600 hover:bg-blue-700 text-white",
-
+    primary:
+      "bg-[var(--accent)] text-[var(--background)] hover:bg-[var(--accent-soft)]",
     secondary:
-      "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100",
-
-    danger: "bg-red-500 hover:bg-red-600 text-white",
+      "bg-[var(--panel)] border border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]",
+    danger:
+      "bg-[var(--accent-soft)] text-[var(--text)] hover:bg-[var(--panel)]",
   };
 
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`
-        px-5
-        py-2.5
-        rounded-lg
-        font-semibold
-        transition
-        duration-200
-        ${variants[variant]}
-        ${className}
-      `}
+      className={`rounded-full px-5 py-2.5 font-semibold transition duration-200 ${variants[variant]} ${className}`}
     >
       {children}
     </button>
