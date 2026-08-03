@@ -17,4 +17,9 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+export async function registerUser(user) {
+  const response = await api.post("/register", user);
+  return response.data;
+}
+
 export default api;
