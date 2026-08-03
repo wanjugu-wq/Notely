@@ -1,24 +1,35 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    login(email, password);
+    navigate("/dashboard");
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-10">
-      <div className="w-full max-w-md rounded-[2rem] border border-gray-200 bg-white p-8 shadow-sm">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-10">
+      <div className="w-full max-w-md rounded-4xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-2xl shadow-black/10">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Welcome back</p>
-          <h1 className="mt-3 text-3xl font-bold text-gray-900">Sign in to NoteNest</h1>
-          <p className="mt-2 text-sm text-gray-600">Continue where you left off and manage your notes.</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--muted)]">
+            Welcome back
+          </p>
+          <h1 className="mt-3 text-3xl font-semibold text-[var(--text)]">
+            Sign in to NoteNest
+          </h1>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            Continue where you left off and manage your notes.
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
@@ -29,7 +40,6 @@ const Login = () => {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-
           <Input
             label="Password"
             type="password"
@@ -39,12 +49,18 @@ const Login = () => {
           />
 
           <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center gap-2 text-gray-600">
-              <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+            <label className="flex items-center gap-2 text-[var(--muted)]">
+              <input
+                type="checkbox"
+                className="rounded border-[var(--border)] bg-[var(--panel)] text-[var(--accent)] focus:ring-[var(--accent)]"
+              />
               Remember me
             </label>
 
-            <Link to="/forgot-password" className="font-medium text-blue-600 hover:text-blue-700">
+            <Link
+              to="/forgot-password"
+              className="font-medium text-[var(--muted)] hover:text-[var(--text)]"
+            >
               Forgot password?
             </Link>
           </div>
@@ -54,9 +70,12 @@ const Login = () => {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-600">
-          Don&apos;t have an account? {" "}
-          <Link to="/register" className="font-semibold text-blue-600 hover:text-blue-700">
+        <p className="mt-6 text-center text-sm text-[var(--muted)]">
+          Don&apos;t have an account?{" "}
+          <Link
+            to="/register"
+            className="font-semibold text-[var(--text)] hover:text-[var(--muted)]"
+          >
             Create one
           </Link>
         </p>
