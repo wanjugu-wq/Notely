@@ -1,24 +1,20 @@
-const BASE_URL = "http://127.0.0.1:5555";
+import axios from "axios";
 
-// Generic request helper
-export async function api(endpoint, options = {}) {
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "http://127.0.0.1:5000",
+});
+
+api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      ...(token && {
-        Authorization: `Bearer ${token}`,
-      }),
-    },
-    ...options,
-  };
-
-  const response = await fetch(`${BASE_URL}${endpoint}`, config);
-
-  if (!response.ok) {
-    throw new Error("Something went wrong.");
+  if (token) {
+    config.headers = {
+      ...config.headers,
+      Authorization: `Bearer ${token}`,
+    };
   }
 
-  return response.json();
-}
+  return config;
+});
+
+export default api;
