@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3001";
 
 export async function registerUser(user) {
   const usersResponse = await fetch(`${BASE_URL}/users`);
@@ -25,26 +25,4 @@ export async function registerUser(user) {
   }
 
   return response.json();
-}
-
-export async function loginUser(email, password) {
-  const response = await fetch(`${BASE_URL}/users`);
-
-  if (!response.ok) {
-    throw new Error("Unable to connect to the server.");
-  }
-
-  const users = await response.json();
-
-  const user = users.find(
-    (user) =>
-      user.email.toLowerCase() === email.toLowerCase() &&
-      user.password === password,
-  );
-
-  if (!user) {
-    throw new Error("Invalid email or password.");
-  }
-
-  return user;
 }

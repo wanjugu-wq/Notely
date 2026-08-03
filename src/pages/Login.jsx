@@ -1,41 +1,20 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
-import { loginUser } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    if (!email || !password) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
-
-    try {
-      const user = await loginUser(email, password);
-
-      //Temporary authentication
-      localStorage.setItem("currentUser", JSON.stringify(user));
-      localStorage.setItem("isAuthenticated", "true");
-
-      toast.success(`Welcome back, ${user.name}!`);
-
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1300);
-    } catch (error) {
-      console.error(error);
-      toast.error(error.message);
-    }
+    login(email, password);
+    navigate("/dashboard");
   };
 
   return (
@@ -45,11 +24,9 @@ const Login = () => {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--muted)]">
             Welcome back
           </p>
-
           <h1 className="mt-3 text-3xl font-semibold text-[var(--text)]">
             Sign in to NoteNest
           </h1>
-
           <p className="mt-2 text-sm text-[var(--muted)]">
             Continue where you left off and manage your notes.
           </p>
@@ -63,7 +40,6 @@ const Login = () => {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-
           <Input
             label="Password"
             type="password"
@@ -76,7 +52,7 @@ const Login = () => {
             <label className="flex items-center gap-2 text-[var(--muted)]">
               <input
                 type="checkbox"
-                className="rounded border-[var(--border)]"
+                className="rounded border-[var(--border)] bg-[var(--panel)] text-[var(--accent)] focus:ring-[var(--accent)]"
               />
               Remember me
             </label>
