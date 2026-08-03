@@ -1,7 +1,5 @@
 # Notely — Modern Note Taking & Workspace Application
 
-![Notely Banner](./public/documents.png)
-
 ## Overview
 
 **Notely** is a modern full-stack note-taking and document management application inspired by tools like Notion.
