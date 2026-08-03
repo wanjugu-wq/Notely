@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from "axios";
 
 const api = axios.create({
@@ -23,3 +24,5 @@ export async function registerUser(user) {
 }
 
 export default api;
+=======
+>>>>>>> 9b58c8b (folder layout)

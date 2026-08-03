@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
@@ -10,3 +11,5 @@ function App() {
 }
 
 export default App;
+=======
+>>>>>>> 9b58c8b (folder layout)
